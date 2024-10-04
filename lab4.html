@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 CSC 225</title>
+    <script>
+
+
+            function ArrivalDate() {
+            let today = new Date();
+            let arrivalDate = new Date();
+            arrivalDate.setDate(today.getDate() + 7);
+            return arrivalDate.toDateString();
+        }
+
+        function getOrderDetails() {
+        alert("Welcome to our store!");
+
+            let name = prompt("What is your name?", "Your name");
+            let item = prompt("What item would you like to order?", "Item name");
+            let quantity = prompt("How many would you like to order (1-99)?", "1");
+
+            while (quantity < 1 || quantity > 99 || isNaN(quantity)) {
+                quantity = prompt("Please enter a valid quantity between 1 and 99.", "1");
+            }
+
+            let currentHour = new Date().getHours();
+            if (currentHour < 12) {
+                greeting = "Good Morning";
+            } else if (currentHour < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+
+            document.getElementById("greeting").innerText = `${greeting} ${name}, Thank you for Ordering!`;
+            document.getElementById("orderDetails").innerText = `You ordered ${quantity} ${item}(s).`;
+            document.getElementById("arrivalDate").innerText = `Your order will arrive on: ${ArrivalDate()}`;
+        }
+
+        window.onload = getOrderDetails;
+    </script>
+</head>
+<body>
+    <h1 id="greeting">Welcome!</h1>
+    <p id="orderDetails"></p>
+    <p id="arrivalDate"></p>
+</body>
+</html>
