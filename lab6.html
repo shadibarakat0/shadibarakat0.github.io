@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Facts</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        img {
+            margin-top: 20px;
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cat Facts</h1>
+    
+    <button id="loadFactsBtn">Load Cat Facts</button>
+
+    <table id="factsTable">
+        <thead>
+            <tr>
+                <th>Fact ID</th>
+                <th>Fact</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2>Cat Image</h2>
+    <img id="catImage" src="default.jpg" alt="Cat Image">
+
+    <script>
+        document.getElementById('loadFactsBtn').addEventListener('click', loadCatFacts);
+
+        function loadCatFacts() {
+            fetch('https://brianobruno.github.io/cats.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not OK');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('API Response:', data); 
+                    
+                    console.log('Facts Array:', data.facts);
+
+                    
+                    if (!data.facts || !Array.isArray(data.facts)) {
+                        console.error('Facts data is missing or not an array');
+                        return;
+                    }
+
+                    
+                    let sortedFacts = data.facts.sort((a, b) => a.factId - b.factId);
+                    
+                    
+                    let factsTable = document.getElementById('factsTable').getElementsByTagName('tbody')[0];
+                    factsTable.innerHTML = ''; 
+
+                    sortedFacts.forEach(fact => {
+                        console.log('Fact Object:', fact); 
+                        if (fact.factId && fact.text) {
+                            let row = factsTable.insertRow();
+                            let factIdCell = row.insertCell(0);
+                            let factCell = row.insertCell(1);
+                            
+                            factIdCell.textContent = fact.factId;
+                            factCell.textContent = fact.text;
+                        } else {
+                            console.error('Missing factId or text in:', fact);
+                        }
+                    });
+
+                    document.getElementById('catImage').src = data.catPhoto;
+                })
+                .catch(error => console.error('Error fetching the data:', error));
+        }
+    </script>
+</body>
+</html>
