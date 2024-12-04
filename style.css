@@ -1,0 +1,55 @@
+/* Remove margins for better alignment with Bootstrap's grid system */
+.container {
+  margin-top: 50px; /* Adjust space for fixed logo */
+}
+
+/* Add a shadow to team cards for a modern look */
+.data {
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Bootstrap-like shadow */
+  margin-bottom: 20px;
+}
+
+/* Improved hover effect */
+.data:hover {
+  background-color: #e6f7ff;
+  transform: scale(1.02); /* Slight zoom effect */
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+/* Logo tweaks */
+img[alt="NBA Logo"] {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: auto;
+  z-index: 1000;
+  background-color: white; /* Prevent overlap */
+  border-radius: 50%; /* Optional circular look */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button updates */
+button {
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  background-color: #007bff; /* Bootstrap's primary color */
+  color: white;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue for hover */
+  transform: translateY(-2px); /* Subtle lift */
+}
+.team-logo {
+  width: 100%; /* Ensures the image spans the full width of the card */
+  height: 150px; /* Sets a fixed height for consistency */
+  object-fit: contain; /* Ensures the image scales proportionally */
+  background-color: #f9f9f9; /* Optional: Adds a neutral background for logos */
+  padding: 10px; /* Optional: Adds padding around the logo */
+}
