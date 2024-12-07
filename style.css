@@ -53,3 +53,10 @@ button:hover {
   background-color: #f9f9f9; /* Optional: Adds a neutral background for logos */
   padding: 10px; /* Optional: Adds padding around the logo */
 }
+.nba-logo {
+    max-width: 100px; /* Adjust the width */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the logo */
+}
+
